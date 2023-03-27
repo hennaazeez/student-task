@@ -1,0 +1,52 @@
+{% extends "admin/adminbase.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="card" style="width: 70rem;">
+  <div class="card-body">
+     <form method="get" class="form-inline d-flex">
+        {{nameFilter.form|crispy}}
+        <button class="btn btn-info" type="submit">Search</button>
+      </form>
+    <h5 class="card-title">Students Data</h5>
+
+
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">SL</th>
+      <th scope="col">NAME</th>
+      <th scope="col"> ROLL NO</th>
+      <th scope="col">COLLEGE NAME</th>
+      <th scope="col">MOBILE</th>
+        <th scope="col">EMAIL</th>
+      <th></th>
+
+
+    </tr>
+  </thead>
+  <tbody>
+      {% for i in data %}
+    <tr>
+      <td>{{forloop.counter}}</td>
+      <td>{{i.name}}</td>
+      <td>{{i.rollno}}</td>
+      <td>{{i.collegename}}</td>
+            <td>{{i.mobile}}</td>
+      <td>{{i.email}}</td>
+
+        <td><a href="{% url 'delete_data' i.id %}" class="btn btn-danger">Delete</a>
+
+
+    </tr>
+{% endfor %}
+  </tbody>
+  </table>
+
+
+
+{% endblock %}
+
+  </div>
+</div>
